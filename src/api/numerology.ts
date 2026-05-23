@@ -1,102 +1,60 @@
-import { apiClient } from './client';
+import { roxy } from './client';
 import type {
-  LifePathRequest,
-  LifePathResponse,
-  ExpressionRequest,
-  ExpressionResponse,
-  SoulUrgeRequest,
-  SoulUrgeResponse,
-  PersonalityRequest,
-  PersonalityResponse,
-  BirthDayRequest,
-  BirthDayResponse,
-  MaturityRequest,
-  MaturityResponse,
-  KarmicLessonsRequest,
-  KarmicLessonsResponse,
-  KarmicDebtRequest,
-  KarmicDebtResponse,
-  PersonalYearRequest,
-  PersonalYearResponse,
-  CompatibilityRequest,
-  CompatibilityResponse,
-  ChartRequest,
-  ChartResponse,
-  NumberMeaningResponse,
-} from './types';
+  PostNumerologyLifePathData,
+  PostNumerologyLifePathResponse,
+  PostNumerologyChartData,
+  PostNumerologyChartResponse,
+  PostNumerologyPersonalYearData,
+  PostNumerologyPersonalYearResponse,
+  PostNumerologyExpressionData,
+  PostNumerologyExpressionResponse,
+  PostNumerologySoulUrgeData,
+  PostNumerologySoulUrgeResponse,
+  PostNumerologyCompatibilityData,
+  PostNumerologyCompatibilityResponse,
+  GetNumerologyMeaningsByNumberResponse,
+} from '@roxyapi/sdk';
+
+type SdkResult<T> = { data?: T; error?: unknown };
+
+/**
+ * Unwrap a Roxy SDK result, returning `data` or throwing a screen-friendly message. The SDK never throws on a non-2xx response: it returns `{ data, error }`, so every call site funnels through here to turn an error into one thrown `Error` the screens can catch.
+ */
+const unwrap = <T>(result: SdkResult<T>, message: string): T => {
+  if (result.error || !result.data) throw new Error(message);
+  return result.data;
+};
+
+/** Body shapes for the numerology calls. Pulled from the SDK request types so the screens cannot drift from the spec. */
+export type LifePathRequest = NonNullable<PostNumerologyLifePathData['body']>;
+export type ChartRequest = NonNullable<PostNumerologyChartData['body']>;
+export type PersonalYearRequest = NonNullable<PostNumerologyPersonalYearData['body']>;
+export type ExpressionRequest = NonNullable<PostNumerologyExpressionData['body']>;
+export type SoulUrgeRequest = NonNullable<PostNumerologySoulUrgeData['body']>;
+export type CompatibilityRequest = NonNullable<PostNumerologyCompatibilityData['body']>;
 
 export const numerologyApi = {
-  getLifePath: async (params: LifePathRequest): Promise<LifePathResponse> => {
-    const { data, error } = await apiClient.POST('/life-path', { body: params });
-    if (error) throw new Error('Failed to calculate Life Path number');
-    return data;
-  },
+  getLifePath: async (body: LifePathRequest): Promise<PostNumerologyLifePathResponse> =>
+    unwrap(await roxy.numerology.calculateLifePath({ body }), 'Failed to calculate Life Path number'),
 
-  getExpression: async (params: ExpressionRequest): Promise<ExpressionResponse> => {
-    const { data, error } = await apiClient.POST('/expression', { body: params });
-    if (error) throw new Error('Failed to calculate Expression number');
-    return data;
-  },
+  getChart: async (body: ChartRequest): Promise<PostNumerologyChartResponse> =>
+    unwrap(await roxy.numerology.generateNumerologyChart({ body }), 'Failed to generate numerology chart'),
 
-  getSoulUrge: async (params: SoulUrgeRequest): Promise<SoulUrgeResponse> => {
-    const { data, error } = await apiClient.POST('/soul-urge', { body: params });
-    if (error) throw new Error('Failed to calculate Soul Urge number');
-    return data;
-  },
+  getPersonalYear: async (body: PersonalYearRequest): Promise<PostNumerologyPersonalYearResponse> =>
+    unwrap(await roxy.numerology.calculatePersonalYear({ body }), 'Failed to calculate Personal Year'),
 
-  getPersonality: async (params: PersonalityRequest): Promise<PersonalityResponse> => {
-    const { data, error } = await apiClient.POST('/personality', { body: params });
-    if (error) throw new Error('Failed to calculate Personality number');
-    return data;
-  },
+  getExpression: async (body: ExpressionRequest): Promise<PostNumerologyExpressionResponse> =>
+    unwrap(await roxy.numerology.calculateExpression({ body }), 'Failed to calculate Expression number'),
 
-  getBirthDay: async (params: BirthDayRequest): Promise<BirthDayResponse> => {
-    const { data, error } = await apiClient.POST('/birth-day', { body: params });
-    if (error) throw new Error('Failed to calculate Birth Day number');
-    return data;
-  },
+  getSoulUrge: async (body: SoulUrgeRequest): Promise<PostNumerologySoulUrgeResponse> =>
+    unwrap(await roxy.numerology.calculateSoulUrge({ body }), 'Failed to calculate Soul Urge number'),
 
-  getMaturity: async (params: MaturityRequest): Promise<MaturityResponse> => {
-    const { data, error } = await apiClient.POST('/maturity', { body: params });
-    if (error) throw new Error('Failed to calculate Maturity number');
-    return data;
-  },
+  getCompatibility: async (body: CompatibilityRequest): Promise<PostNumerologyCompatibilityResponse> =>
+    unwrap(await roxy.numerology.calculateNumCompatibility({ body }), 'Failed to calculate compatibility'),
 
-  getKarmicLessons: async (params: KarmicLessonsRequest): Promise<KarmicLessonsResponse> => {
-    const { data, error } = await apiClient.POST('/karmic-lessons', { body: params });
-    if (error) throw new Error('Failed to analyze Karmic Lessons');
-    return data;
-  },
-
-  getKarmicDebt: async (params: KarmicDebtRequest): Promise<KarmicDebtResponse> => {
-    const { data, error } = await apiClient.POST('/karmic-debt', { body: params });
-    if (error) throw new Error('Failed to detect Karmic Debt');
-    return data;
-  },
-
-  getPersonalYear: async (params: PersonalYearRequest): Promise<PersonalYearResponse> => {
-    const { data, error } = await apiClient.POST('/personal-year', { body: params });
-    if (error) throw new Error('Failed to calculate Personal Year');
-    return data;
-  },
-
-  getCompatibility: async (params: CompatibilityRequest): Promise<CompatibilityResponse> => {
-    const { data, error } = await apiClient.POST('/compatibility', { body: params });
-    if (error) throw new Error('Failed to calculate compatibility');
-    return data;
-  },
-
-  getChart: async (params: ChartRequest): Promise<ChartResponse> => {
-    const { data, error } = await apiClient.POST('/chart', { body: params });
-    if (error) throw new Error('Failed to generate numerology chart');
-    return data;
-  },
-
-  getNumberMeaning: async (number: number): Promise<NumberMeaningResponse> => {
-    const { data, error } = await apiClient.GET('/meanings/{number}', {
-      params: { path: { number: String(number) } },
-    });
-    if (error) throw new Error('Failed to fetch number meaning');
-    return data;
-  },
+  getNumberMeaning: async (number: number): Promise<GetNumerologyMeaningsByNumberResponse> =>
+    unwrap(
+      await roxy.numerology.getNumberMeaning({ path: { number: String(number) } }),
+      'Failed to fetch number meaning',
+    ),
 };

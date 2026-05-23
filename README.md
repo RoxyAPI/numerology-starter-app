@@ -1,6 +1,12 @@
-# RoxyAPI Numerology Starter
+# Numerology Starter App
 
-A fully functional numerology calculator app built with React Native Expo and TypeScript, powered by the RoxyAPI Numerology API. Calculate Life Path, Expression, Soul Urge, and other core numerology numbers with detailed interpretations.
+[![Get API Key](https://img.shields.io/badge/Get_API_Key-roxyapi.com-black?style=for-the-badge)](https://roxyapi.com/pricing)
+[![API Docs](https://img.shields.io/badge/API_Docs-Reference-black?style=for-the-badge)](https://roxyapi.com/api-reference#tag/numerology)
+[![License: MIT](https://img.shields.io/badge/License-MIT-black?style=for-the-badge)](LICENSE)
+
+Open-source React Native (Expo) template for a Pythagorean numerology app: Life Path, full numerology chart, Personal Year forecast, two-person compatibility, and the full meaning library for numbers 1 to 9 plus Master Numbers 11, 22, and 33. Built on the [Roxy](https://roxyapi.com) Numerology API and the official [@roxyapi/sdk](https://www.npmjs.com/package/@roxyapi/sdk). One API key, every numerology endpoint, full control over your native UI.
+
+Fork it, set one environment variable, and ship.
 
 ## Screenshots
 
@@ -15,197 +21,170 @@ A fully functional numerology calculator app built with React Native Expo and Ty
   <img src="screenshots/06.jpeg" width="250" />
 </p>
 
-## Features
+## What you get
 
-Build a professional numerology app with essential features:
+- **Life Path calculator** from a birth date, the single most important number in numerology, with Master Number and Karmic Debt flags.
+- **Full numerology chart** in one call: Life Path, Expression, Soul Urge, Personality, and Birth Day numbers plus the current Personal Year.
+- **Personal Year forecast** with theme, cycle, opportunities, challenges, and advice for the year ahead.
+- **Compatibility** between two people, scored across Life Path, Expression, and Soul Urge with strengths, challenges, and relationship advice.
+- **Number meanings** for 1 to 9 and Master Numbers 11, 22, 33, with keywords, strengths, challenges, career, relationships, and spiritual path.
+- **Master Number and Karmic Debt detection** returned by the API, never collapsed client side.
+- **Dark mode** with a teal theme that follows the device setting.
 
-- **Life Path Calculator**: Calculate the most important numerology number from birth date
-- **Full Numerology Chart**: Generate complete numerology profile with all core numbers
-- **Personal Year Forecast**: Annual cycle and forecast calculations
-- **Compatibility Analysis**: Check numerology compatibility between two people
-- **Number Meanings**: Explore detailed meanings for numbers 1-9, 11, 22, and 33
-- **Master Numbers**: Automatic detection of Master Numbers (11, 22, 33)
-- **Karmic Debt**: Identify Karmic Debt numbers (13, 14, 16, 19)
-- **Dark Mode Ready**: Automatic light/dark mode support with teal theme
-- **Interactive Number Details**: Tap any number to see full meanings with strengths, challenges, career, relationships, and spiritual insights
+## Stack
 
-## Tech Stack
+| Technology | Purpose |
+|-----------|---------|
+| [Expo SDK 54](https://expo.dev) | React Native runtime and build tooling |
+| [Expo Router](https://docs.expo.dev/router/introduction/) | File-based navigation with bottom tabs |
+| [@roxyapi/sdk](https://www.npmjs.com/package/@roxyapi/sdk) | Fully typed RoxyAPI client. One key, every domain. |
+| [NativeWind v4](https://www.nativewind.dev) | Tailwind CSS for React Native |
+| [Roxy Numerology API](https://roxyapi.com/products/numerology-api) | Pythagorean numerology, charts, compatibility, and meanings |
 
-- **Expo SDK 54** - React Native development platform
-- **Expo Router** - File-based navigation with bottom tabs
-- **TypeScript** - Type-safe development
-- **NativeWind v4** - Tailwind CSS for React Native styling
-- **openapi-fetch** - Type-safe API client
-- **Lucide Icons** - Beautiful icons for navigation
-- **RoxyAPI Numerology API** - Professional numerology calculations
-- **Auto-generated Types** - TypeScript types from OpenAPI schema
+## Quick start
 
-## Quick Start
-
-### 1. Clone and Install
+### 1. Clone and install
 
 ```bash
-git clone https://github.com/RoxyAPI/numerology-starter-app
+git clone https://github.com/RoxyAPI/numerology-starter-app.git
 cd numerology-starter-app
 npm install
 ```
 
-### 2. Get Your API Key
+### 2. Get your API key
 
-Visit [roxyapi.com/pricing](https://roxyapi.com/pricing) to sign up and get your API key. RoxyAPI provides professional numerology calculations with:
+Get instant access at **[roxyapi.com/pricing](https://roxyapi.com/pricing)**. One key unlocks every numerology endpoint. Add it to `.env`:
 
-- Life Path, Expression, Soul Urge, Personality, Birth Day, Maturity numbers
-- Master Number detection (11, 22, 33)
-- Karmic Debt and Karmic Lessons analysis
-- Personal Year forecasts
-- Compatibility calculations
-- Comprehensive numerology charts
-- Detailed 300-500 word interpretations for every number
-
-### 3. Configure Environment
-
-Create a `.env` file in the project root:
-
-```env
-EXPO_PUBLIC_ROXYAPI_KEY=your_api_key_here
-EXPO_PUBLIC_ROXYAPI_BASE_URL=https://roxyapi.com/api/v2
+```
+EXPO_PUBLIC_ROXYAPI_KEY=your-api-key-here
 ```
 
-### 4. Run the App
+> **Bundled key caveat.** A mobile app has no server, so any `EXPO_PUBLIC_*` value is compiled into the build and can be read off a device. For production, use a key restricted to your bundle id in the dashboard, or route calls through a thin backend proxy that holds the real key. Never ship an unrestricted key.
+
+### 3. Run
 
 ```bash
-# Start Expo development server
-npm start
-
-# Run on iOS
-npm run ios
-
-# Run on Android
-npm run android
-
-# Run on web
-npm run web
+npm start          # dev server, then press i, a, or w
+npm run ios        # iOS simulator (macOS only)
+npm run android    # Android emulator
+npm run web        # web
 ```
 
-## Project Structure
+## How it works
 
-```
-numerology-starter-app/
-├── app/
-│   ├── (tabs)/
-│   │   ├── index.tsx          # Life Path calculator
-│   │   ├── chart.tsx           # Full numerology chart
-│   │   ├── personal-year.tsx   # Personal year forecast
-│   │   ├── compatibility.tsx   # Compatibility checker
-│   │   └── meanings.tsx        # Number meanings explorer
-│   └── _layout.tsx             # Root layout
-├── src/
-│   ├── api/
-│   │   ├── client.ts           # API client setup
-│   │   ├── numerology.ts       # API methods
-│   │   ├── schema.ts           # Generated types from OpenAPI
-│   │   └── types.ts            # Type exports
-│   ├── components/
-│   │   └── RoxyBranding.tsx    # API key setup screen
-│   └── constants/
-│       └── colors.ts           # Theme colors
-├── assets/                     # Logo, icons, images
-├── .env                        # Environment variables
-└── package.json
+The SDK is the only data layer. There is no generated schema file to keep in sync: `@roxyapi/sdk` ships its own types from the same OpenAPI spec the API serves, so a response flows straight into a screen with no glue code. Numerology takes a name and date of birth only, so there is no geocoding step.
+
+### One typed client
+
+```ts
+// src/api/client.ts
+import { createRoxy } from '@roxyapi/sdk';
+
+const key = process.env.EXPO_PUBLIC_ROXYAPI_KEY ?? '';
+export const roxy = createRoxy(key);
+export const hasApiKey = (): boolean => Boolean(key);
 ```
 
-## API Endpoints Used
+### One data layer, screens stay thin
 
-The app demonstrates these RoxyAPI Numerology endpoints:
+Every screen imports from `src/api`. The data layer wraps each `roxy.numerology.*` call and unwraps the SDK `{ data, error }` result into either the response or one thrown error the screen can catch:
 
-```typescript
-// Life Path calculation
-POST /life-path
-{ year: 1990, month: 7, day: 15 }
-
-// Expression number
-POST /expression
-{ fullName: "John Smith" }
-
-// Soul Urge number
-POST /soul-urge
-{ fullName: "John Smith" }
-
-// Complete numerology chart
-POST /chart
-{ fullName: "John Smith", year: 1990, month: 7, day: 15, currentYear: 2026 }
-
-// Number meanings
-GET /meanings/{number}
-
-// And more: /personality, /birth-day, /maturity, /karmic-lessons, 
-// /karmic-debt, /personal-year, /compatibility
+```ts
+// src/api/numerology.ts
+export const numerologyApi = {
+  getLifePath: async (body) => unwrap(await roxy.numerology.calculateLifePath({ body }), 'Failed to calculate Life Path number'),
+  // ...
+};
 ```
 
-## Type Safety
-
-The app uses auto-generated TypeScript types from the RoxyAPI OpenAPI schema:
-
-```bash
-# Regenerate types when API updates
-npm run generate:types
+```tsx
+// app/(tabs)/index.tsx
+const data = await numerologyApi.getLifePath({ year: 1990, month: 7, day: 15 });
+// data.number, data.type, data.meaning.title
 ```
 
-Types are automatically generated from:
+## Featured endpoints
+
+The highest-demand numerology endpoints, in the order you are most likely to ship them. Every method name and field below comes from the [OpenAPI spec](https://roxyapi.com/api/v2/numerology/openapi.json).
+
+```ts
+import { createRoxy } from '@roxyapi/sdk';
+
+const roxy = createRoxy(process.env.EXPO_PUBLIC_ROXYAPI_KEY!);
+
+// 1. Life Path. The number-one numerology keyword, every calculator page starts here.
+const { data: lp } = await roxy.numerology.calculateLifePath({ body: { year: 1990, month: 7, day: 15 } });
+// lp.number, lp.type ("single" | "master"), lp.meaning.title
+
+// 2. Full numerology chart. One shot for all core numbers plus the Personal Year.
+const { data: chart } = await roxy.numerology.generateNumerologyChart({
+  body: { fullName: 'Jane Smith', year: 1990, month: 7, day: 15 },
+});
+// chart.coreNumbers.lifePath.number, chart.coreNumbers.expression.number, chart.coreNumbers.soulUrge.number
+
+// 3. Personal Year. Annual forecast, drives the January traffic spike.
+const { data: pyear } = await roxy.numerology.calculatePersonalYear({ body: { month: 7, day: 15, year: 2026 } });
+// pyear.personalYear, pyear.theme, pyear.forecast
+
+// 4. Compatibility. Two-person scoring across Life Path, Expression, and Soul Urge.
+const { data: compat } = await roxy.numerology.calculateNumCompatibility({
+  body: { person1: { fullName: 'Jane Smith', year: 1990, month: 7, day: 15 }, person2: { fullName: 'John Doe', year: 1992, month: 3, day: 22 } },
+});
+// compat.overallScore, compat.rating
+
+// 5. Number meanings. Cache once for 1 to 9 plus Master Numbers 11, 22, 33.
+const { data: meaning } = await roxy.numerology.getNumberMeaning({ path: { number: '11' } });
+// meaning.number, meaning.meaning.title, meaning.meaning.description
 ```
-https://roxyapi.com/api/v2/numerology/openapi.json
+
+This template uses 7 of the numerology endpoints. Browse the rest in the [API reference](https://roxyapi.com/api-reference#tag/numerology).
+
+## Project structure
+
+```
+app/                          # Expo Router screens
+├── _layout.tsx               # Root Stack
+└── (tabs)/
+    ├── _layout.tsx           # Bottom tabs
+    ├── index.tsx             # Life Path calculator
+    ├── chart.tsx             # Full numerology chart
+    ├── personal-year.tsx     # Personal Year forecast
+    ├── compatibility.tsx     # Two-person compatibility
+    └── meanings.tsx          # Number meanings explorer
+src/
+├── api/
+│   ├── client.ts             # The one Roxy SDK client + hasApiKey guard
+│   ├── numerology.ts         # Wraps roxy.numerology.*, unwraps { data, error }
+│   ├── types.ts              # SDK response types under app-friendly names
+│   └── index.ts              # Barrel export
+├── components/
+│   ├── NumberDetailModal.tsx # Full meaning sheet for a tapped number
+│   └── RoxyBranding.tsx
+├── constants/colors.ts       # appColors for React Native props
+└── hooks/useUserId.ts        # Stable device id in AsyncStorage
 ```
 
-## Styling
+## Customize
 
-Built with **NativeWind v4** (Tailwind CSS for React Native):
+- **Add a feature.** Pick a numerology method, add a wrapper in `src/api/numerology.ts`, call it from a screen. The SDK types regenerate from the spec, so new endpoints flow through with no manual typing. The API also ships Personality, Birth Day, Maturity, Karmic Lessons, Karmic Debt, Personal Day, and Personal Month.
+- **Change the theme.** This app uses Tailwind colors through NativeWind. Swap `teal-600` in the screen `className` strings for any Tailwind color, and update `appColors.primary` in `src/constants/colors.ts` for the React Native props.
+- **Save profiles.** Use AsyncStorage to keep a calculated chart on device. RoxyAPI stores no birth data, so memory is your layer to own.
 
-- `className="text-3xl font-bold text-zinc-900 dark:text-white"` - Tailwind classes
-- Automatic dark mode with `dark:` prefix
-- Teal brand color (`teal-600`)
-- Zinc gray scale for text and backgrounds
+## Why Roxy
 
-## Building for Production
+- **Breadth.** Numerology plus Western astrology, Vedic astrology, tarot, biorhythm, I Ching, crystals, dreams, and angel numbers under one key.
+- **Type-safe.** The SDK types come from one OpenAPI pipeline, so response shapes cannot drift from what the API returns.
+- **Eight languages.** Pass `query: { lang }` on the numerology endpoints for interpretations in English, Hindi, Turkish, Spanish, German, Portuguese, French, or Russian.
+- **Remote MCP.** Connect AI agents to every numerology endpoint at `roxyapi.com/mcp/numerology`, no local setup.
 
-### iOS
+## Links
 
-```bash
-eas build --platform ios
-```
-
-### Android
-
-```bash
-eas build --platform android
-```
-
-Requires [Expo Application Services (EAS)](https://expo.dev/eas) account.
-
-## Customization Tips
-
-1. **Add more calculators**: The API supports Expression, Soul Urge, Personality, Maturity, Karmic Lessons, and more
-2. **Enhance UI**: Add animations with Reanimated, charts with Victory Native
-3. **Save calculations**: Use AsyncStorage to save user's numerology profile
-4. **Share results**: Add share functionality for calculated numbers
-5. **Multi-language**: The API returns English interpretations - add i18n for UI text
-6. **Custom colors**: Modify `src/constants/colors.ts` and Tailwind config
-
-## Learn More
-
-- **API Documentation**: [roxyapi.com/docs](https://roxyapi.com/docs)
-- **OpenAPI Schema**: [roxyapi.com/api/v2/numerology/openapi.json](https://roxyapi.com/api/v2/numerology/openapi.json)
-- **Pricing**: [roxyapi.com/pricing](https://roxyapi.com/pricing)
-- **Expo Documentation**: [docs.expo.dev](https://docs.expo.dev)
-
-## Support
-
-- API Documentation: [roxyapi.com/docs](https://roxyapi.com/docs)
-- Get API Key: [roxyapi.com/pricing](https://roxyapi.com/pricing)
+- [Numerology API](https://roxyapi.com/products/numerology-api)
+- [API reference and playground](https://roxyapi.com/api-reference#tag/numerology)
+- [Get API key](https://roxyapi.com/pricing)
+- [All templates](https://roxyapi.com/starters)
+- [Connect AI agents via MCP](https://roxyapi.com/docs/mcp)
 
 ## License
 
-MIT - Feel free to use this starter for your own numerology app projects.
-
----
-
-**Built with ❤️ using [RoxyAPI](https://roxyapi.com) - Professional APIs for developers**
+MIT
