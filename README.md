@@ -2,7 +2,7 @@
 
 [![Get API Key](https://img.shields.io/badge/Get_API_Key-roxyapi.com-black?style=for-the-badge)](https://roxyapi.com/pricing)
 [![API Docs](https://img.shields.io/badge/API_Docs-Reference-black?style=for-the-badge)](https://roxyapi.com/api-reference#tag/numerology)
-[![License: MIT](https://img.shields.io/badge/License-MIT-black?style=for-the-badge)](LICENSE)
+[![License: MIT](https://img.shields.io/badge/License-MIT-black?style=for-the-badge)](https://github.com/RoxyAPI/numerology-starter-app/blob/main/LICENSE)
 
 Open-source React Native (Expo) template for a Pythagorean numerology app: Life Path, full numerology chart, Personal Year forecast, two-person compatibility, and the full meaning library for numbers 1 to 9 plus Master Numbers 11, 22, and 33. Built on the [Roxy](https://roxyapi.com) Numerology API and the official [@roxyapi/sdk](https://www.npmjs.com/package/@roxyapi/sdk). One API key, every numerology endpoint, full control over your native UI.
 
@@ -11,14 +11,14 @@ Fork it, set one environment variable, and ship.
 ## Screenshots
 
 <p align="center">
-  <img src="screenshots/01.jpeg" width="250" />
-  <img src="screenshots/02.jpeg" width="250" />
-  <img src="screenshots/03.jpeg" width="250" />
+  <img src="https://raw.githubusercontent.com/RoxyAPI/numerology-starter-app/main/screenshots/01.jpeg" width="250" />
+  <img src="https://raw.githubusercontent.com/RoxyAPI/numerology-starter-app/main/screenshots/02.jpeg" width="250" />
+  <img src="https://raw.githubusercontent.com/RoxyAPI/numerology-starter-app/main/screenshots/03.jpeg" width="250" />
 </p>
 <p align="center">
-  <img src="screenshots/04.jpeg" width="250" />
-  <img src="screenshots/05.jpeg" width="250" />
-  <img src="screenshots/06.jpeg" width="250" />
+  <img src="https://raw.githubusercontent.com/RoxyAPI/numerology-starter-app/main/screenshots/04.jpeg" width="250" />
+  <img src="https://raw.githubusercontent.com/RoxyAPI/numerology-starter-app/main/screenshots/05.jpeg" width="250" />
+  <img src="https://raw.githubusercontent.com/RoxyAPI/numerology-starter-app/main/screenshots/06.jpeg" width="250" />
 </p>
 
 ## What you get
