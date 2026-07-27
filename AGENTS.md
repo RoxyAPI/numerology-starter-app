@@ -1,6 +1,6 @@
 # Agents Guide
 
-This is a RoxyAPI starter app. A Pythagorean numerology calculator built with React Native, Expo SDK 54, and TypeScript. Demonstrates Life Path, Expression, Soul Urge, Personal Year, full numerology charts, and compatibility, with Master Number and Karmic Debt detection, all powered by the RoxyAPI Numerology API through the official `@roxyapi/sdk`.
+This is a RoxyAPI starter app. A Pythagorean numerology calculator built with React Native, Expo SDK 57, and TypeScript. Demonstrates Life Path, Expression, Soul Urge, Personal Year, full numerology charts, and compatibility, with Master Number and Karmic Debt detection, all powered by the RoxyAPI Numerology API through the official `@roxyapi/sdk`.
 
 ## Setup
 - Get an API key at https://roxyapi.com/pricing
