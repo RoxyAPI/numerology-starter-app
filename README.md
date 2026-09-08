@@ -182,7 +182,7 @@ src/
 - [Numerology API](https://roxyapi.com/products/numerology-api)
 - [API reference and playground](https://roxyapi.com/api-reference#tag/numerology)
 - [Get API key](https://roxyapi.com/pricing)
-- [All templates](https://roxyapi.com/starters)
+- [All templates](https://roxyapi.com/templates)
 - [Connect AI agents via MCP](https://roxyapi.com/docs/mcp)
 
 ## License
